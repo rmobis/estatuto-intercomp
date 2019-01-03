@@ -1,0 +1,69 @@
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{array}
+\usepackage{nth}
+\usepackage[portuguese]{babel}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{changepage}
+\usepackage{graphicx}
+\usepackage{xfrac}
+\usepackage{makecell}
+\usepackage{tabularx}
+\usepackage{chngcntr}
+\usepackage{etoolbox}
+
+% Formatação de listas e enumerações
+\renewcommand{\labelitemi}{-}
+\renewcommand{\theenumi}{\Roman{enumi}}
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\theenumiii}{\arabic{enumiii}}
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii}
+\renewcommand{\labelenumiii}{\theenumiii}
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent}
+
+% Formatação dos Capítulos
+\renewcommand{\thechapter}{ \Roman{chapter}}
+\titleformat{\chapter}{\centering\sc\large}{\chaptername \thechapter}{1em}{}
+\titlespacing{\chapter}{0mm}{\baselineskip}{0.5\baselineskip}
+
+% Formatação de Tabelas
+\setcellgapes{.75em}
+\setlength{\tabcolsep}{.5em}
+\renewcommand{\arraystretch}{1.25}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% Não resetar contagem de figuras e tabelas a cada capítulo
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+% Environment para artigos
+\newcounter{article}
+\newenvironment{article}[1][]{\refstepcounter{article}\par\medskip\leavevmode{\parindent=-1.5em\indent}\textbf{Artigo \arabic{article}º} -- \rmfamily}{\medskip}
+
+% Environment para parágrafos
+\newcounter{xparagraph}[article]
+\newenvironment{xparagraph}[1][]{\refstepcounter{xparagraph}\par\medskip\leavevmode{\parindent=-1.5em\indent}\textbf{\S \arabic{xparagraph}º} -- \rmfamily}{\medskip}
+
+\makeatletter
+% Aumenta a margem @tempdima da TOC
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{3.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+       \hskip -\leftskip
+      #1\nobreak\normalfont\leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
+\makeatother
