@@ -35,6 +35,10 @@
 \renewcommand{\arraystretch}{1.25}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
+% Algumas utilidades
+\newcommand{\ula}{\textsuperscript{\b{a}}}
+\newcommand{\ulo}{\textsuperscript{\b{o}}}
+
 % Não resetar contagem de figuras e tabelas a cada capítulo
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
@@ -45,7 +49,7 @@
 
 % Environment para parágrafos
 \newcounter{xparagraph}[article]
-\newenvironment{xparagraph}[1][]{\refstepcounter{xparagraph}\par\medskip\leavevmode{\parindent=-1.5em\indent}\textbf{\S \arabic{xparagraph}º} -- \rmfamily}{\medskip}
+\newenvironment{xparagraph}[1][]{\refstepcounter{xparagraph}\par\medskip\leavevmode{\parindent=-1.5em\indent}\textbf{\S \arabic{xparagraph}\ulo} -- \rmfamily}{\medskip}
 
 \makeatletter
 % Aumenta a margem @tempdima da TOC
